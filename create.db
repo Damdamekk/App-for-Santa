@@ -1,0 +1,32 @@
+CREATE TABLE Children (
+    ChildID INT PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Age INT NOT NULL,
+    Address NVARCHAR(255) NOT NULL,
+    WishList NVARCHAR(1000),
+    IsNice BIT NOT NULL
+);
+
+CREATE TABLE Elves (
+    ElfID INT PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Specialty NVARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Toys (
+    ToyID INT PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Description NVARCHAR(1000),
+    Price DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE Deliveries (
+    DeliveryID INT PRIMARY KEY,
+    ChildID INT,
+    ElfID INT,
+    ToyID INT,
+    DeliveryDate DATE,
+    FOREIGN KEY (ChildID) REFERENCES Children(ChildID),
+    FOREIGN KEY (ElfID) REFERENCES Elves(ElfID),
+    FOREIGN KEY (ToyID) REFERENCES Toys(ToyID)
+);
